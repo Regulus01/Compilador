@@ -7,4 +7,9 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Antlr" Version="3.5.0.2" />
+      <PackageReference Include="Antlr4.Runtime" Version="4.6.6" />
+    </ItemGroup>
+
 </Project>
