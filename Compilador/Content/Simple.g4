@@ -1,62 +1,66 @@
 grammar Simple;
 
-programa:
-    declaracao*
-    comando*
-    EOF;
+programa: PROGRAM ID PVIG declaracao* comando* BEGIN comando* END PONTO;
 
-declaracao:
-    tipo ID ';'
-    | 'var' ID ':' tipo ';';
+declaracao: VAR (declaracaoVar | declaracaoVarExplicita);
 
-tipo:
-    'inteiro'
-    | 'real'
-    | 'texto';
+declaracaoVar: ID (VIG ID)* DPONTOS tipo PVIG;
 
-comando:
-    atribuicao ';'
-    | comandoLeitura
-    | comandoEscrita
-    | comandoCondicional
-    | comandoRepeticao;
+declaracaoVarExplicita: ID DPONTOS tipo PVIG;
 
-atribuicao:
-    ID '=' expressao;
+tipo: INTEGER | REAL | TEXTO;
 
-expressao:
-    termo
-    | expressao '+' termo
-    | expressao '-' termo;
+comando: atribuicao PVIG | comandoLeitura | comandoEscrita | comandoCondicional | comandoRepeticao;
 
-termo:
-    fator
-    | termo '*' fator
-    | termo '/' fator;
+atribuicao: ID ATRIB expressao;
 
-fator:
-    ID
-    | NUMERO_INTEIRO
-    | NUMERO_REAL
-    | '(' expressao ')';
+expressao: relacional | expressao 'ou' relacional | expressao 'e' relacional;
 
-comandoLeitura:
-    'leia' '(' ID ')' ';';
+relacional: aditiva | relacional OPREL aditiva;
 
-comandoEscrita:
-    'escreva' '(' expressao ')' ';';
+aditiva: multiplicativa | aditiva OPAD multiplicativa;
 
-comandoCondicional:
-    'se' expressao 'entao' comando* 'senao' comando* 'fimse';
+multiplicativa: primaria | multiplicativa OPMULT primaria;
 
-comandoRepeticao:
-    'para' ID 'de' expressao 'ate' expressao 'faca' comando* 'fimpara';
+primaria: ID | NUMERO_INTEIRO | NUMERO_REAL | '(' expressao ')';
+
+comandoLeitura: READ '(' ID ')' PVIG;
+
+comandoEscrita: WRITE '(' expressao ')' PVIG;
+
+comandoCondicional: WHILE expressao DO comando* END;
+
+comandoRepeticao: WHILE expressao DO comando* END;
 
 // Regras para tokens
 
+PROGRAM: 'PROGRAM';
+VAR: 'VAR';
+BEGIN: 'BEGIN';
+END: 'END';
+READ: 'READ';
+WRITE: 'WRITE';
+INTEGER: 'INTEGER';
+REAL: 'REAL';
+TEXTO: 'TEXTO';
+WHILE: 'WHILE';
+DO: 'DO';
+
+OPREL: '<' | '<=' | '>' | '>=' | '==' | '<>';
+OPAD: '+' | '-';
+OPMULT: '*' | '/';
+
+PVIG: ';';
+PONTO: '.';
+DPONTOS: ':';
+VIG: ',';
+ABPAR: '(';
+FPAR: ')';
+ATRIB: ':=';
+
 ID: [a-zA-Z]+;
-NUMERO_INTEIRO: [0-9]+;
-NUMERO_REAL: [0-9]+'.'[0-9]+;
+NUMERO_INTEIRO: ('+' | '-')?[0-9]+;
+NUMERO_REAL: ('+' | '-')?[0-9]+ '.' [0-9]+;
 
 // Ignorar espaços em branco e comentários
 
