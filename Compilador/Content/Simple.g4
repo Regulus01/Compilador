@@ -1,5 +1,6 @@
 grammar Simple;
 
+//Semantica
 programa: PROGRAM ID PVIG declaracao* comando* BEGIN comando* END PONTO;
 
 declaracao: VAR (declaracaoVar | declaracaoVarExplicita);
@@ -14,7 +15,7 @@ comando: atribuicao PVIG | comandoLeitura | comandoEscrita | comandoCondicional 
 
 atribuicao: ID ATRIB expressao;
 
-expressao: relacional | expressao 'ou' relacional | expressao 'e' relacional;
+expressao: relacional | expressao 'or' relacional | expressao 'and' relacional;
 
 relacional: aditiva | relacional OPREL aditiva;
 
@@ -32,19 +33,23 @@ comandoCondicional: WHILE expressao DO comando* END;
 
 comandoRepeticao: WHILE expressao DO comando* END;
 
-// Regras para tokens
 
-PROGRAM: 'PROGRAM';
-VAR: 'VAR';
-BEGIN: 'BEGIN';
-END: 'END';
-READ: 'READ';
-WRITE: 'WRITE';
-INTEGER: 'INTEGER';
-REAL: 'REAL';
-TEXTO: 'TEXTO';
-WHILE: 'WHILE';
-DO: 'DO';
+// Ignorar espaços em branco e comentários
+COMMENT: '/' ~[/]* ('/' ~[/]*)* '/' -> skip;
+WS: [ \t\r\n]+ -> skip;
+
+// Regras para tokens
+PROGRAM: 'PROGRAM' | 'program';
+VAR: 'VAR' | 'var';
+BEGIN: 'BEGIN' | 'begin';
+END: 'END' | 'end';
+READ: 'READ' | 'read';
+WRITE: 'WRITE' | 'write';
+INTEGER: 'INTEGER' | 'integer';
+REAL: 'REAL' | 'real';
+TEXTO: 'TEXTO' | 'texto';
+WHILE: 'WHILE' | 'while';
+DO: 'DO' | 'do';
 
 OPREL: '<' | '<=' | '>' | '>=' | '==' | '<>';
 OPAD: '+' | '-';
@@ -62,7 +67,3 @@ ID: [a-zA-Z]+;
 NUMERO_INTEIRO: ('+' | '-')?[0-9]+;
 NUMERO_REAL: ('+' | '-')?[0-9]+ '.' [0-9]+;
 
-// Ignorar espaços em branco e comentários
-
-WS: [ \t\r\n]+ -> skip;
-COMMENT: '//' .* -> skip;
