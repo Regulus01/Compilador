@@ -31,6 +31,7 @@ token_dict = {
     28: 'NUMERO_REAL'
 }
 
+
 def main(arquivo):
     input_stream = FileStream(arquivo)
     lexer = SimpleLexer(input_stream)
@@ -48,9 +49,10 @@ def imprimirTokens(arquivo):
     lexer = SimpleLexer(input_stream)
     tokens = lexer.getAllTokens()
 
-    print("Tokens:")
+    print("\n\t\t  Tokens  \n")
+
     for token in tokens:
-        print(f"Tipo: {token_dict[token.type]}, Valor: {token.text}")
+        print(f"\033[0;31mTipo:\033[0;0m {token_dict[token.type]}, \033[0;33mValor:\033[0;00m {token.text}")
 
 
 if __name__ == '__main__':
