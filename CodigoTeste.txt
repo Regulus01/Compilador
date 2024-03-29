@@ -1,3 +1,5 @@
+PROGRAM teste;
+
 VAR
   a, b, soma : INTEGER;
 
@@ -6,4 +8,5 @@ begin
   b := 2;
   soma := a + b;
   write(soma);
+
 end.

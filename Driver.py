@@ -30,28 +30,28 @@ token_dict = {
     27: 'NUMERO_INTEIRO',
     28: 'NUMERO_REAL'
 }
-def main(argv):
-    input_stream = FileStream(argv)
+
+def main(arquivo):
+    input_stream = FileStream(arquivo)
     lexer = SimpleLexer(input_stream)
     stream = CommonTokenStream(lexer)
     parser = SimpleParser(stream)
-    tree = parser.declaracao()
+    tree = parser.programa()
+
+    if tree.exception is None:
+        imprimirTokens(arquivo)
+
+
+def imprimirTokens(arquivo):
+    # É necessário consumir o lexer novamente
+    input_stream = FileStream(arquivo)
+    lexer = SimpleLexer(input_stream)
     tokens = lexer.getAllTokens()
+
     print("Tokens:")
     for token in tokens:
         print(f"Tipo: {token_dict[token.type]}, Valor: {token.text}")
 
-'''
-    print("Tokens:")
-    for token in lexer.getAllTokens():
-        print(f"Tipo: {token.type}")
-        if token.type == SimpleLexer.ID:
-            print(f"Valor: {token.text}")
-
-        # Imprimir o tipo do token sem usar números
-        if token.type in SimpleLexer.TOKEN_NAMES:
-            print(f"Nome do Tipo: {SimpleLexer.TOKEN_NAMES[token.type]}")
-'''
 
 if __name__ == '__main__':
     main("CodigoTeste.txt")
