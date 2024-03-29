@@ -11,7 +11,7 @@ declaracaoVarExplicita: ID DPONTOS tipo PVIG;
 
 tipo: INTEGER | REAL | TEXTO;
 
-comando: atribuicao PVIG | comandoLeitura | comandoEscrita | comandoCondicional | comandoRepeticao;
+comando: atribuicao PVIG | comandoLeitura | comandoEscrita | comandoRepeticao;
 
 atribuicao: ID ATRIB expressao;
 
@@ -29,13 +29,11 @@ comandoLeitura: READ '(' ID ')' PVIG;
 
 comandoEscrita: WRITE '(' expressao ')' PVIG;
 
-comandoCondicional: WHILE expressao DO comando* END;
-
 comandoRepeticao: WHILE expressao DO comando* END;
 
 
 // Ignorar espaços em branco e comentários
-COMMENT: '/' ~[/]* ('/' ~[/]*)* '/' -> skip;
+COMMENT: '//' ~[\r\n]* -> skip;
 WS: [ \t\r\n]+ -> skip;
 
 // Regras para tokens
