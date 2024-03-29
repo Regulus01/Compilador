@@ -33,7 +33,7 @@ comandoRepeticao: WHILE expressao DO comando* END;
 
 
 // Ignorar espaços em branco e comentários
-COMMENT: '//' ~[\r\n]* -> skip;
+COMMENT: '/' ~[/]* ('/' ~[/]*)* '/' -> skip;
 WS: [ \t\r\n]+ -> skip;
 
 // Regras para tokens
