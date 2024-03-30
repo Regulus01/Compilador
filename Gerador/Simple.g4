@@ -2,7 +2,7 @@ grammar Simple;
 import lexerSimple;
 
 //Semantica
-programa: PROGRAM ID PVIG declaracao* comando* BEGIN comando* END PONTO;
+programa: PROGRAM ID PVIG declaracao* comando* BEGIN comando* END;
 
 declaracao: VAR (declaracaoVar | declaracaoVarExplicita);
 
@@ -10,7 +10,7 @@ declaracaoVar: ID (VIG ID)* DPONTOS tipo PVIG;
 
 declaracaoVarExplicita: ID DPONTOS tipo PVIG;
 
-tipo: INTEGER | REAL | TEXTO;
+tipo: CTE | REAL | TEXTO;
 
 comando: atribuicao PVIG | comandoLeitura | comandoEscrita | comandoRepeticao;
 
@@ -28,6 +28,6 @@ primaria: ID | NUMERO_INTEIRO | NUMERO_REAL | '(' expressao ')';
 
 comandoLeitura: READ '(' ID ')' PVIG;
 
-comandoEscrita: WRITE '(' expressao ')' PVIG;
+comandoEscrita: WRITE '(' expressao ')' PVIG | WRITE '(' CADEIA ')' PVIG;
 
 comandoRepeticao: WHILE expressao DO comando* END;

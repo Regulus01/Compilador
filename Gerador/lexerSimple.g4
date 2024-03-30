@@ -11,7 +11,7 @@ BEGIN: 'BEGIN' | 'begin';
 END: 'END' | 'end';
 READ: 'READ' | 'read';
 WRITE: 'WRITE' | 'write';
-INTEGER: 'INTEGER' | 'integer';
+CTE: 'INTEGER' | 'integer';
 REAL: 'REAL' | 'real';
 TEXTO: 'TEXTO' | 'texto';
 WHILE: 'WHILE' | 'while';
@@ -30,5 +30,6 @@ FPAR: ')';
 ATRIB: ':=';
 
 ID: [a-zA-Z]+;
+CADEIA: '"' .*? '"' ;
 NUMERO_INTEIRO: ('+' | '-')?[0-9]+;
 NUMERO_REAL: ('+' | '-')?[0-9]+ '.' [0-9]+;

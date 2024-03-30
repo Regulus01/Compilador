@@ -11,7 +11,7 @@ token_dict = {
     8: 'END',
     9: 'READ',
     10: 'WRITE',
-    11: 'INTEGER',
+    11: 'CTE',
     12: 'REAL',
     13: 'TEXTO',
     14: 'WHILE',
@@ -27,8 +27,9 @@ token_dict = {
     24: 'FPAR',
     25: 'ATRIB',
     26: 'ID',
-    27: 'NUMERO_INTEIRO',
-    28: 'NUMERO_REAL'
+    27: 'CADEIA',
+    28: 'NUMERO_INTEIRO',
+    29: 'NUMERO_REAL'
 }
 
 
@@ -37,9 +38,9 @@ def main(arquivo):
     lexer = SimpleLexer(input_stream)
     stream = CommonTokenStream(lexer)
     parser = SimpleParser(stream)
-    tree = parser.programa()
+    parser.programa()
 
-    if tree.exception is None:
+    if parser.getNumberOfSyntaxErrors() == 0:
         imprimirTokens(arquivo)
 
 
@@ -52,7 +53,7 @@ def imprimirTokens(arquivo):
     print("\n\t\t  Tokens  \n")
 
     for token in tokens:
-        print(f"\033[0;31mTipo:\033[0;0m {token_dict[token.type]}, \033[0;33mValor:\033[0;00m {token.text}")
+        print(f"\033[0;31mTipo:\033[0;0m [ {token_dict[token.type]} ] \033[0;33mValor:\033[0;00m {token.text}")
 
 
 if __name__ == '__main__':
