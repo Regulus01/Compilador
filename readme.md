@@ -15,5 +15,3 @@
 ## Observações
 
 * É necessário ter algum SDK do java instalado
-* Caso precise gerar o código com outras regras no arquivo **.g4**, apague o arquivos gerados 
-* (arquivos abaixo do simple.g4, na pasta Gerador) e repita o processo acima
