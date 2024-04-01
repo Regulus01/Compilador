@@ -1,7 +1,7 @@
 lexer grammar lexerSimple;
 
 // Ignora espaços em branco e comentários (/ comentario /)
-COMMENT: '/' ~[/]* ('/' ~[/]*)* '/' -> skip;
+COMMENT: '/' .*? '/' -> skip;
 WS: [ \t\r\n]+ -> skip;
 
 // Regras para tokens

@@ -1,13 +1,23 @@
 PROGRAM teste;
-
-VAR
-  a, b, soma : INTEGER;
+  /  Criando variaveis /
+VAR a, b, soma : INTEGER;
 
 begin
+  /  Atribuindo valores as  variaveis /
   a := 1;
   b := 2;
   soma := a + b;
   write(soma);
+
+  WHILE a < 10 DO
+  BEGIN
+    soma := a + b;
+    write(soma);
+
+    a := a + 1;
+  END;
+
+  /  Printando /
   write("Ola mundo");
 
 end

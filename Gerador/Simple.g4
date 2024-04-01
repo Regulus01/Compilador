@@ -30,4 +30,4 @@ comandoLeitura: READ '(' ID ')' PVIG;
 
 comandoEscrita: WRITE '(' expressao ')' PVIG | WRITE '(' CADEIA ')' PVIG;
 
-comandoRepeticao: WHILE expressao DO comando* END;
+comandoRepeticao: WHILE expressao DO BEGIN comando* END PVIG;
