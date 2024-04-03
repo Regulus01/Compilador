@@ -34,7 +34,7 @@ comandoEscrita: WRITE '(' expressao ')' PVIG;
 
 comandoEscritaCadeia: WRITE '(' CADEIA ')' PVIG;
 
-comandoRepeticao: WHILE expressao DO comando*;
+comandoRepeticao: WHILE expressao DO comando;
 
 // ambiguidade retirada
 cmdIf: IF expressao THEN comando;
