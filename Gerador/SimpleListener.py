@@ -143,6 +143,15 @@ class SimpleListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by SimpleParser#comandoEscritaCadeia.
+    def enterComandoEscritaCadeia(self, ctx:SimpleParser.ComandoEscritaCadeiaContext):
+        pass
+
+    # Exit a parse tree produced by SimpleParser#comandoEscritaCadeia.
+    def exitComandoEscritaCadeia(self, ctx:SimpleParser.ComandoEscritaCadeiaContext):
+        pass
+
+
     # Enter a parse tree produced by SimpleParser#comandoRepeticao.
     def enterComandoRepeticao(self, ctx:SimpleParser.ComandoRepeticaoContext):
         pass

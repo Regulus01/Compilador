@@ -23,12 +23,14 @@ def imprimirTokens(arquivo):
     analise_tokens = tokens
 
     for token in analise_tokens:
-        # token 28 é id
+        # token 29 é id
         if token.type == 29 and len(token.text) > 16:
             raise ValueError(f"O token ID: {token.text} tem {len(token.text)} caracteres o maximo permitido é 16 "
                              f"caracteres")
-        if token.type == 30 and len(token.text) > 16:
-            raise ValueError(f"O token CTE: {token.text} tem {len(token.text)} bytes o maximo permitido são 2 bytes")
+        if token.type == 30:
+            if int(token.text) > 32767 or int(token.text) < -32767:
+                raise ValueError(f"O token CTE: {token.text} ultrapassa o limite de bytes o permitido são 2 bytes ("
+                                 f"-32767 até 32767)")
 
     print("\n\t\t  Tokens  \n")
 

@@ -12,7 +12,7 @@ declaracaoVarExplicita: ID DPONTOS tipo PVIG;
 
 tipo: INTEGER | REAL | TEXTO;
 
-comando: atribuicao PVIG | comandoLeitura | comandoEscrita | comandoRepeticao | cmdIf | cmdIfElse;
+comando: atribuicao PVIG | comandoLeitura | comandoEscrita | comandoEscritaCadeia | comandoRepeticao | cmdIf | cmdIfElse;
 
 atribuicao: ID ATRIB expressao;
 
@@ -30,7 +30,9 @@ notCond: primaria (OPMULT | OPAD) notCond | primaria;
 
 comandoLeitura: READ '(' ID ')' PVIG;
 
-comandoEscrita: WRITE '(' expressao ')' PVIG | WRITE '(' CADEIA ')' PVIG;
+comandoEscrita: WRITE '(' expressao ')' PVIG;
+
+comandoEscritaCadeia: WRITE '(' CADEIA ')' PVIG;
 
 comandoRepeticao: WHILE expressao DO comando*;
 
