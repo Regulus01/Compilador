@@ -13,7 +13,15 @@ BEGIN
 
   WRITE(soma);
 
-  WHILE ~(a < 10) DO
+  IF a > b THEN
+     WRITE("a é maior");
+
+  IF a > b THEN
+     WRITE("a é maior");
+  ELSE
+      WRITE("A NÃO É MAIOR");
+
+  WHILE a < 10 DO
     soma := a + b;
     WRITE(soma);
     a := a + 1;

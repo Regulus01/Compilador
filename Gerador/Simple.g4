@@ -10,9 +10,9 @@ declaracaoVar: ID (VIG ID)* DPONTOS tipo PVIG;
 
 declaracaoVarExplicita: ID DPONTOS tipo PVIG;
 
-tipo: CTE | REAL | TEXTO;
+tipo: INTEGER | REAL | TEXTO;
 
-comando: atribuicao PVIG | comandoLeitura | comandoEscrita | comandoRepeticao;
+comando: atribuicao PVIG | comandoLeitura | comandoEscrita | comandoRepeticao | cmdIf | cmdIfElse;
 
 atribuicao: ID ATRIB expressao;
 
@@ -24,10 +24,17 @@ aditiva: multiplicativa | aditiva OPAD multiplicativa;
 
 multiplicativa: primaria | multiplicativa OPMULT primaria;
 
-primaria: ID | NUMERO_INTEIRO | NUMERO_REAL | '(' expressao ')';
+primaria: ID | CTE | NUMERO_INTEIRO | NUMERO_REAL | '(' expressao ')' | NOT notCond;
+
+notCond: primaria (OPMULT | OPAD) notCond | primaria;
 
 comandoLeitura: READ '(' ID ')' PVIG;
 
 comandoEscrita: WRITE '(' expressao ')' PVIG | WRITE '(' CADEIA ')' PVIG;
 
-comandoRepeticao: WHILE expressao DO BEGIN comando* END PVIG;
+comandoRepeticao: WHILE expressao DO comando*;
+
+// ambiguidade retirada
+cmdIf: IF expressao THEN comando;
+
+cmdIfElse: IF expressao THEN comando ELSE comando;

@@ -4,7 +4,7 @@ VAR a, b, soma : INTEGER;
 
 BEGIN
   //  Atribuindo valores as  variaveis
-  a := 1;
+  aaaaaaaaaaaaaaaaa := 1;
   b := 2;
   a1 := 3;
   b1 := 4;
@@ -13,7 +13,7 @@ BEGIN
 
   WRITE(soma);
 
-  WHILE ~(a < 10) DO
+  WHILE a < 10 DO
     soma := a + b;
     WRITE(soma);
     a := a + 1;

@@ -1,21 +1,24 @@
 lexer grammar lexerSimple;
 
 // Ignora espaços em branco e comentários (/ comentario /)
-COMMENT: '/' .*? '/' -> skip;
+COMMENT: '//' ~[\r\n]* -> skip;
 WS: [ \t\r\n]+ -> skip;
 
 // Regras para tokens
-PROGRAM: 'PROGRAM' | 'program';
-VAR: 'VAR' | 'var';
-BEGIN: 'BEGIN' | 'begin';
-END: 'END' | 'end';
-READ: 'READ' | 'read';
-WRITE: 'WRITE' | 'write';
-CTE: 'INTEGER' | 'integer';
-REAL: 'REAL' | 'real';
-TEXTO: 'TEXTO' | 'texto';
-WHILE: 'WHILE' | 'while';
-DO: 'DO' | 'do';
+PROGRAM: 'PROGRAM';
+VAR: 'VAR';
+BEGIN: 'BEGIN';
+END: 'END';
+READ: 'READ';
+WRITE: 'WRITE';
+INTEGER: 'INTEGER';
+REAL: 'REAL';
+TEXTO: 'TEXTO';
+WHILE: 'WHILE';
+DO: 'DO';
+IF: 'IF';
+THEN: 'THEN';
+ELSE: 'ELSE';
 
 OPREL: '<' | '<=' | '>' | '>=' | '==' | '<>';
 OPAD: '+' | '-';
@@ -29,7 +32,10 @@ ABPAR: '(';
 FPAR: ')';
 ATRIB: ':=';
 
-ID: [a-zA-Z]+;
+ID: [a-zA-Z][a-zA-Z0-9]*;
+CTE: [0-9]+;
 CADEIA: '"' .*? '"' ;
 NUMERO_INTEIRO: ('+' | '-')?[0-9]+;
 NUMERO_REAL: ('+' | '-')?[0-9]+ '.' [0-9]+;
+
+NOT: '~';

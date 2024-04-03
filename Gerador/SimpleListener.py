@@ -116,6 +116,15 @@ class SimpleListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by SimpleParser#notCond.
+    def enterNotCond(self, ctx:SimpleParser.NotCondContext):
+        pass
+
+    # Exit a parse tree produced by SimpleParser#notCond.
+    def exitNotCond(self, ctx:SimpleParser.NotCondContext):
+        pass
+
+
     # Enter a parse tree produced by SimpleParser#comandoLeitura.
     def enterComandoLeitura(self, ctx:SimpleParser.ComandoLeituraContext):
         pass
@@ -140,6 +149,24 @@ class SimpleListener(ParseTreeListener):
 
     # Exit a parse tree produced by SimpleParser#comandoRepeticao.
     def exitComandoRepeticao(self, ctx:SimpleParser.ComandoRepeticaoContext):
+        pass
+
+
+    # Enter a parse tree produced by SimpleParser#cmdIf.
+    def enterCmdIf(self, ctx:SimpleParser.CmdIfContext):
+        pass
+
+    # Exit a parse tree produced by SimpleParser#cmdIf.
+    def exitCmdIf(self, ctx:SimpleParser.CmdIfContext):
+        pass
+
+
+    # Enter a parse tree produced by SimpleParser#cmdIfElse.
+    def enterCmdIfElse(self, ctx:SimpleParser.CmdIfElseContext):
+        pass
+
+    # Exit a parse tree produced by SimpleParser#cmdIfElse.
+    def exitCmdIfElse(self, ctx:SimpleParser.CmdIfElseContext):
         pass
 
 

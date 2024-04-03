@@ -1,36 +1,7 @@
 from antlr4 import *
 from Gerador.SimpleLexer import SimpleLexer
 from Gerador.SimpleParser import SimpleParser
-
-token_dict = {
-    3: 'COMMENT',
-    4: 'WS',
-    5: 'PROGRAM',
-    6: 'VAR',
-    7: 'BEGIN',
-    8: 'END',
-    9: 'READ',
-    10: 'WRITE',
-    11: 'CTE',
-    12: 'REAL',
-    13: 'TEXTO',
-    14: 'WHILE',
-    15: 'DO',
-    16: 'OPREL',
-    17: 'OPAD',
-    18: 'OPMULT',
-    19: 'PVIG',
-    20: 'PONTO',
-    21: 'DPONTOS',
-    22: 'VIG',
-    23: 'ABPAR',
-    24: 'FPAR',
-    25: 'ATRIB',
-    26: 'ID',
-    27: 'CADEIA',
-    28: 'NUMERO_INTEIRO',
-    29: 'NUMERO_REAL'
-}
+from DictTokens import token_dict
 
 
 def main(arquivo):
@@ -49,6 +20,15 @@ def imprimirTokens(arquivo):
     input_stream = FileStream(arquivo)
     lexer = SimpleLexer(input_stream)
     tokens = lexer.getAllTokens()
+    analise_tokens = tokens
+
+    for token in analise_tokens:
+        # token 28 é id
+        if token.type == 29 and len(token.text) > 16:
+            raise ValueError(f"O token ID: {token.text} tem {len(token.text)} caracteres o maximo permitido é 16 "
+                             f"caracteres")
+        if token.type == 30 and len(token.text) > 16:
+            raise ValueError(f"O token CTE: {token.text} tem {len(token.text)} bytes o maximo permitido são 2 bytes")
 
     print("\n\t\t  Tokens  \n")
 
